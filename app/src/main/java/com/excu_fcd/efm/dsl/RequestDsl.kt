@@ -6,6 +6,14 @@ import com.excu_fcd.efm.data.remote.RemoteUri
 import com.excu_fcd.efm.data.request.LocalRequest
 import com.excu_fcd.efm.data.request.Request
 
+inline fun ArrayList<LocalUri>.localUri(block: LocalUri.Builder.() -> Unit) {
+    add(LocalUri.Builder().apply(block).build())
+}
+
+inline fun ArrayList<LocalUri>.localUris(block: List<LocalUri>.() -> Unit) {
+    addAll(listOf<LocalUri>().apply(block))
+}
+
 inline fun ArrayList<MetaUri>.item(block: MetaUri.Builder.() -> Unit) {
     add(MetaUri.Builder().apply(block).build())
 }

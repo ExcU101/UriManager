@@ -6,6 +6,7 @@ import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
 import com.excu_fcd.efm.data.MetaUri
 import com.excu_fcd.efm.dsl.item
+import com.excu_fcd.efm.dsl.localRequest
 import com.excu_fcd.efm.dsl.request
 import com.excu_fcd.efm.provider.LocalManager
 
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        localRequest {
+            list {
+
+            }
+        }
 
 
         val r = request<MetaUri> {
