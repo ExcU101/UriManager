@@ -4,9 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
-import com.excu_fcd.efm.dsl.localUri
 import com.excu_fcd.efm.dsl.metaUri
-import com.excu_fcd.efm.dsl.remoteUri
 import com.excu_fcd.efm.dsl.request
 import com.excu_fcd.efm.provider.LocalManager
 import com.excu_fcd.efm.utils.logIt
