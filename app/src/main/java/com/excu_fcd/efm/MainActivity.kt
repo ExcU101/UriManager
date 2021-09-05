@@ -4,10 +4,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
+import com.excu_fcd.efm.data.MetaUri
 import com.excu_fcd.efm.dsl.item
 import com.excu_fcd.efm.dsl.request
 import com.excu_fcd.efm.provider.LocalManager
-import com.excu_fcd.efm.utils.logIt
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val r = request {
+
+        val r = request<MetaUri> {
             name = "Simple request"
             list {
                 repeat(100) {
@@ -36,8 +37,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        r.getUris().forEach {
-            it.getName().logIt()
-        }
+        manager.compileRequest(request = r)
     }
 }
