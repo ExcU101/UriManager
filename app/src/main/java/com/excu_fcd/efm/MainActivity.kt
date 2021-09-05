@@ -11,7 +11,9 @@ import com.excu_fcd.efm.utils.logIt
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var manager: LocalManager
+    private val manager: LocalManager by lazy {
+        LocalManager(context = this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,14 +22,16 @@ class MainActivity : AppCompatActivity() {
         val r = request {
             name = "Simple request"
             list {
-                item {
-                    uri = Uri.fromFile(Environment.getRootDirectory())
-                }
-                item {
-                    uri = Uri.fromFile(Environment.getRootDirectory())
-                }
-                item {
-                    uri = Uri.fromFile(Environment.getRootDirectory())
+                repeat(100) {
+                    item {
+                        uri = Uri.fromFile(Environment.getRootDirectory())
+                    }
+                    item {
+                        uri = Uri.fromFile(Environment.getRootDirectory())
+                    }
+                    item {
+                        uri = Uri.fromFile(Environment.getRootDirectory())
+                    }
                 }
             }
         }
