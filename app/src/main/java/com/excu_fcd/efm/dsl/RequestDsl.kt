@@ -3,17 +3,37 @@ package com.excu_fcd.efm.dsl
 import com.excu_fcd.efm.data.MetaUri
 import com.excu_fcd.efm.data.local.LocalUri
 import com.excu_fcd.efm.data.remote.RemoteUri
+import com.excu_fcd.efm.data.request.LocalRequest
 import com.excu_fcd.efm.data.request.Request
 
-fun request(block: Request.Builder.() -> Unit): Request =
-    Request.Builder().apply(block = block).build()
+inline fun ArrayList<LocalUri>.localUri(block: LocalUri.Builder.() -> Unit) {
+    add(LocalUri.Builder().apply(block).build())
+}
 
-fun metaUri(block: MetaUri.Builder.() -> Unit): MetaUri =
+inline fun ArrayList<LocalUri>.localUris(block: List<LocalUri>.() -> Unit) {
+    addAll(listOf<LocalUri>().apply(block))
+}
+
+inline fun ArrayList<MetaUri>.item(block: MetaUri.Builder.() -> Unit) {
+    add(MetaUri.Builder().apply(block).build())
+}
+
+inline fun ArrayList<MetaUri>.items(block: List<MetaUri>.() -> Unit) {
+    addAll(listOf<MetaUri>().apply(block))
+}
+
+inline fun <U : MetaUri> request(block: Request.Builder<U>.() -> Unit): Request<U> =
+    Request.Builder<U>().apply(block = block).build()
+
+inline fun localRequest(block: LocalRequest.Builder.() -> Unit): LocalRequest =
+    LocalRequest.Builder().apply(block).build()
+
+inline fun metaUri(block: MetaUri.Builder.() -> Unit): MetaUri =
     MetaUri.Builder().apply(block).build()
 
-fun localUri(block: LocalUri.Builder.() -> Unit): LocalUri =
+inline fun localUri(block: LocalUri.Builder.() -> Unit): LocalUri =
     LocalUri.Builder().apply(block).build()
 
-fun remoteUri(block: RemoteUri.Builder.() -> Unit): RemoteUri =
+inline fun remoteUri(block: RemoteUri.Builder.() -> Unit): RemoteUri =
     RemoteUri.Builder().apply(block).build()
 
