@@ -12,7 +12,7 @@ class LocalRequest(private val localName: String, private val uris: ArrayList<Lo
     class Builder(override var name: String = "Empty request") :
         Request.Builder<LocalUri>(name = name) {
 
-        override fun build() = LocalRequest(name, uris = getList())
+        override fun build(): LocalRequest = LocalRequest(name, uris = getList())
 
     }
 

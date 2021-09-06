@@ -1,11 +1,11 @@
 package com.excu_fcd.efm
 
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
-import com.excu_fcd.efm.dsl.localRequest
+import androidx.core.net.toUri
 import com.excu_fcd.efm.dsl.local
+import com.excu_fcd.efm.dsl.localRequest
 import com.excu_fcd.efm.provider.LocalManager
 
 class MainActivity : AppCompatActivity() {
@@ -18,19 +18,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        localRequest {
+        val request = localRequest {
             list {
-
+                Environment.getRootDirectory().listFiles().filter {
+                    it.isDirectory
+                }.forEach {
+                    local {
+                        uri = it.toUri()
+                    }
+                }
             }
         }
 
-
-        manager.compileRequest(request = localRequest {
-            list {
-                local {
-                    uri = Uri.fromFile(Environment.getRootDirectory())
-                }
-            }
-        })
+        manager.compileRequest(request = request)
     }
 }

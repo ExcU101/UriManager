@@ -4,6 +4,7 @@ import com.excu_fcd.efm.data.MetaUri
 import com.excu_fcd.efm.data.local.LocalUri
 import com.excu_fcd.efm.data.remote.RemoteUri
 import com.excu_fcd.efm.data.request.LocalRequest
+import com.excu_fcd.efm.data.request.RemoteRequest
 import com.excu_fcd.efm.data.request.Request
 
 inline fun ArrayList<LocalUri>.local(block: LocalUri.Builder.() -> Unit) {
@@ -35,6 +36,9 @@ inline fun <U : MetaUri> request(block: Request.Builder<U>.() -> Unit): Request<
 
 inline fun localRequest(block: LocalRequest.Builder.() -> Unit): LocalRequest =
     LocalRequest.Builder().apply(block).build()
+
+inline fun remoteRequest(block: RemoteRequest.Builder.() -> Unit): RemoteRequest =
+    RemoteRequest.Builder().apply(block).build()
 
 inline fun meta(block: MetaUri.Builder.() -> Unit): MetaUri =
     MetaUri.Builder().apply(block).build()
