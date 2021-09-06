@@ -8,7 +8,7 @@ import com.excu_fcd.efm.utils.logIt
 class LocalManager(private val context: Context) : Manager<LocalUri, LocalRequest>,
     Observer<LocalUri> {
 
-    fun makeRequest() {
+    fun makeRequest(request: LocalRequest) {
 
     }
 
