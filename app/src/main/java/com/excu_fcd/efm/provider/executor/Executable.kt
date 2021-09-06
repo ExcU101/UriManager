@@ -8,4 +8,6 @@ interface Executable<U : MetaUri, R : Request<U>> {
 
     suspend fun execute(request: R): ExecuteResult
 
+    fun executorClassName(): String? = this::class.simpleName
+
 }
