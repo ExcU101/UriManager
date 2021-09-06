@@ -4,10 +4,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
-import com.excu_fcd.efm.data.MetaUri
-import com.excu_fcd.efm.dsl.item
 import com.excu_fcd.efm.dsl.localRequest
-import com.excu_fcd.efm.dsl.request
+import com.excu_fcd.efm.dsl.local
 import com.excu_fcd.efm.provider.LocalManager
 
 class MainActivity : AppCompatActivity() {
@@ -27,23 +25,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val r = request<MetaUri> {
-            name = "Simple request"
+        manager.compileRequest(request = localRequest {
             list {
-                repeat(100) {
-                    item {
-                        uri = Uri.fromFile(Environment.getRootDirectory())
-                    }
-                    item {
-                        uri = Uri.fromFile(Environment.getRootDirectory())
-                    }
-                    item {
-                        uri = Uri.fromFile(Environment.getRootDirectory())
-                    }
+                local {
+                    uri = Uri.fromFile(Environment.getRootDirectory())
                 }
             }
-        }
-
-        manager.compileRequest(request = r)
+        })
     }
 }
