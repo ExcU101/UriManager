@@ -36,7 +36,7 @@ open class MetaUri(private val uri: Uri = Uri.parse("")) : Item {
         }
     }
 
-    open class Builder(open var uri: Uri = Uri.parse("")) {
+    open class Builder(open val uri: Uri = Uri.parse("")) {
 
         open fun build(): MetaUri = MetaUri(uri = uri)
 

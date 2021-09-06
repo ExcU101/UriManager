@@ -8,7 +8,8 @@ import kotlinx.parcelize.Parcelize
 import java.io.File
 
 @Parcelize
-class LocalUri(private val uri: Uri) : MetaUri(uri = uri) {
+class LocalUri(private val uri: Uri, private val mustBeDirectory: Boolean = false) :
+    MetaUri(uri = uri) {
 
     @IgnoredOnParcel
     private val file = uri.toFile()
@@ -33,8 +34,8 @@ class LocalUri(private val uri: Uri) : MetaUri(uri = uri) {
 
     fun getNameWithoutExtension(): String = file.nameWithoutExtension
 
-    class Builder(override var uri: Uri = Uri.parse("")) : MetaUri.Builder(uri = uri) {
-        override fun build(): LocalUri = LocalUri(uri = uri)
+    class Builder(override var uri: Uri = Uri.parse(""), var mustBeDirectory: Boolean = false) : MetaUri.Builder(uri = uri) {
+        override fun build(): LocalUri = LocalUri(uri = uri, mustBeDirectory)
     }
 
 
