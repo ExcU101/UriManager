@@ -41,6 +41,7 @@ dependencies {
 
     //Dagger
     implementation("com.google.dagger:dagger:$daggerVersion")
+    implementation(project(mapOf("path" to ":core")))
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
     //Hilt

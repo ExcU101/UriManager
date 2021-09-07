@@ -1,8 +1,7 @@
 package com.excu_fcd.efm.di.module
 
 import android.content.Context
-import com.excu_fcd.efm.provider.RemoteManager
-import dagger.Binds
+import com.excu_fcd.core.provider.RemoteManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
