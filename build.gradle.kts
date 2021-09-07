@@ -7,6 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30")
         val daggerVersion = "2.38.1"
 
         dependencies {

@@ -3,11 +3,11 @@ package com.excu_fcd.efm
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
-import com.excu_fcd.efm.dsl.local
-import com.excu_fcd.efm.dsl.localRequest
-import com.excu_fcd.efm.provider.LocalManager
-import com.excu_fcd.efm.provider.RemoteManager
-import com.excu_fcd.efm.utils.downloadDir
+import com.excu_fcd.core.dsl.local
+import com.excu_fcd.core.dsl.localRequest
+import com.excu_fcd.core.provider.LocalManager
+import com.excu_fcd.core.provider.RemoteManager
+import com.excu_fcd.core.utils.downloadDir
 
 class MainActivity : AppCompatActivity() {
 

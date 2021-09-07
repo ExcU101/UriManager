@@ -1,7 +1,7 @@
 package com.excu_fcd.efm.di.module
 
 import android.content.Context
-import com.excu_fcd.efm.provider.LocalManager
+import com.excu_fcd.core.provider.LocalManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
