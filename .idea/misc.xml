@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Igor/AndroidStudioProjects/EFM/app/src/main/res/layout/activity_main.xml" value="0.3546875" />
+        <entry key="..\:/Users/Igor/AndroidStudioProjects/EFM/app/src/main/res/layout/local_fragment_layout.xml" value="0.3546875" />
+        <entry key="..\:/Users/Igor/AndroidStudioProjects/EFM/core/src/main/res/drawable/ic_add_check_24.xml" value="0.2355" />
       </map>
     </option>
   </component>
