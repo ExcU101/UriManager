@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -15,6 +13,10 @@ android {
         applicationId = "com.excu_fcd.efm"
         minSdk = 21
         targetSdk = 31
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 
     compileOptions {
@@ -33,7 +35,6 @@ dependencies {
 
     //Kotlin coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     //Coil
@@ -41,7 +42,7 @@ dependencies {
 
     //Dagger
     implementation("com.google.dagger:dagger:$daggerVersion")
-    implementation(project(mapOf("path" to ":core")))
+
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
     //Hilt
@@ -51,4 +52,9 @@ dependencies {
     //AndroidX
     implementation("androidx.core:core-ktx:1.6.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+    implementation("com.google.android.material:material:1.5.0-alpha03")
+
+    //Core
+    implementation(project(mapOf("path" to ":core")))
 }

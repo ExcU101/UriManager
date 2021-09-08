@@ -1,9 +1,7 @@
 package com.excu_fcd.core.provider
 
-interface Subscriber<A : Any> {
+interface Subscriber {
 
-    fun subscribe()
-
-    fun unsubscribe()
+    fun getName(): String
 
 }
