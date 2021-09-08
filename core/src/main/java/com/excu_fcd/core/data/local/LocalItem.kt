@@ -24,10 +24,6 @@ class LocalItem(private val path: String) : Item {
         return Size.EMPTY
     }
 
-    override fun getId(): Int {
-        return hashCode()
-    }
-
     override fun getName(): String {
         if (path.contains("/")) {
             return path.substring(path.lastIndexOf("/"))

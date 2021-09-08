@@ -1,6 +1,6 @@
 package com.excu_fcd.core.provider
 
-interface Subscriber {
+interface Subscriber<A : Any> {
 
     fun subscribe()
 
