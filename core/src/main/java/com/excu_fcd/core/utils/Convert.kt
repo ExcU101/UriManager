@@ -1,12 +1,8 @@
 package com.excu_fcd.core.utils
 
-import android.net.Uri
-import com.excu_fcd.core.data.MetaUri
-import com.excu_fcd.core.data.local.LocalUri
-import com.excu_fcd.core.data.remote.RemoteUri
+import com.excu_fcd.core.data.MimeType
+import com.excu_fcd.core.data.Size
 
-fun Uri.toLocalUri(): LocalUri = LocalUri(uri = this)
+fun String.asMimeType(): MimeType = MimeType(this)
 
-fun Uri.toRemoteUri(): RemoteUri = RemoteUri(uri = this)
-
-fun Uri.toMetaUri(): MetaUri = MetaUri(uri = this)
+fun Long.asSize(): Size = Size(this)
