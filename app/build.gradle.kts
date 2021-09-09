@@ -52,7 +52,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     //Coil
-    implementation("io.coil-kt:coil:1.3.2")
+    implementation("io.coil-kt:coil-compose:1.3.0")
 
     //Dagger
     implementation("com.google.dagger:dagger:$daggerVersion")

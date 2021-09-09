@@ -5,7 +5,7 @@ import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class MimeType(private val value: String) : Parcelable {
+class MimeType(private val value: String, private val isDirectory: Boolean = false) : Parcelable {
 
     @IgnoredOnParcel
     private val supportableExtensions = listOf(
@@ -14,7 +14,7 @@ class MimeType(private val value: String) : Parcelable {
     )
 
     fun getExtension(): String {
-        if (value.contains(".")) {
+        if (value.contains(".") && !isDirectory) {
             return value.substring(value.lastIndexOf("."))
         }
         return "BIN"

@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.excu_fcd.core.data.local.LocalItem
-import com.excu_fcd.efm.ui.layouts.Layout
+import com.excu_fcd.efm.ui.layouts.ItemLayout
 
 class MainActivity : ComponentActivity() {
 
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 items(Environment.getExternalStorageDirectory().listFiles()!!.map {
                     LocalItem(it)
                 }) {
-                    Layout(localItem = it) {
+                    ItemLayout(localItem = it) {
                         Toast.makeText(this@MainActivity, "Clicked", Toast.LENGTH_SHORT).show()
                     }
                 }
