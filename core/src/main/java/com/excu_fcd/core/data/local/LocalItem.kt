@@ -14,6 +14,9 @@ class LocalItem(private val path: String) : Item {
     @IgnoredOnParcel
     private val mimeType = MimeType(path)
 
+    @IgnoredOnParcel
+    private val file = File(path)
+
     constructor(path: Path) : this(path = path.toString())
 
     constructor(file: File) : this(path = file.path)
@@ -21,12 +24,16 @@ class LocalItem(private val path: String) : Item {
     fun getMimeType(): MimeType = mimeType
 
     fun getSize(): Size {
+        val size = file.length()
+        if (size > 0) {
+            return Size(size)
+        }
         return Size.EMPTY
     }
 
     override fun getName(): String {
         if (path.contains("/")) {
-            return path.substring(path.lastIndexOf("/"))
+            return path.substring(path.lastIndexOf("/") + 1)
         }
         return path
     }

@@ -6,6 +6,10 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+val daggerVersion = "2.38.1"
+val coroutinesVersion = "1.5.2"
+val composeVersion = "1.1.0-alpha03"
+
 android {
     compileSdk = 31
 
@@ -13,23 +17,33 @@ android {
         applicationId = "com.excu_fcd.efm"
         minSdk = 21
         targetSdk = 31
+
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildFeatures {
-        viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = composeVersion
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
-}
 
-val daggerVersion = "2.38.1"
-val coroutinesVersion = "1.5.2"
+    packagingOptions {
+        resources.excludes.add("META-INF/licenses/**")
+        resources.excludes.add("META-INF/AL2.0")
+        resources.excludes.add("META-INF/LGPL2.1")
+    }
+}
 
 dependencies {
 
@@ -52,8 +66,17 @@ dependencies {
     //AndroidX
     implementation("androidx.core:core-ktx:1.6.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation("com.google.android.material:material:1.5.0-alpha03")
+
+    //Compose
+    implementation("androidx.compose.compiler:compiler:$composeVersion")
+    implementation("androidx.compose.animation:animation:$composeVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation("androidx.compose.foundation:foundation:$composeVersion")
+    implementation("androidx.compose.material:material:$composeVersion")
+
+    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha08")
 
     //Core
     implementation(project(mapOf("path" to ":core")))
