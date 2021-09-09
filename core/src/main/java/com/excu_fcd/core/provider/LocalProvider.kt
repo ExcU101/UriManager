@@ -15,4 +15,12 @@ class LocalProvider(private val context: Context) : Provider,
 
     }
 
+    fun navigateNextPath(currentPath: String, fullPath: String): String {
+        if (fullPath.contains(currentPath)) {
+            val newPath = fullPath.substring(0, currentPath.lastIndex)
+            return currentPath + newPath
+        }
+        return fullPath
+    }
+
 }

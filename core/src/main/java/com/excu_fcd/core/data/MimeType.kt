@@ -17,7 +17,14 @@ class MimeType(private val value: String) : Parcelable {
         if (value.contains(".")) {
             return value.substring(value.lastIndexOf("."))
         }
-        return value
+        return "BIN"
+    }
+
+    fun canBeSupportableInText(): String {
+        if (canBeSupportable()) {
+            return "Yes"
+        }
+        return "No"
     }
 
     fun canBeSupportable(): Boolean = supportableExtensions.contains(getExtension())
