@@ -3,6 +3,7 @@ package com.excu_fcd.core.data.local
 import com.excu_fcd.core.data.Item
 import com.excu_fcd.core.data.MimeType
 import com.excu_fcd.core.data.Size
+import com.excu_fcd.core.data.Time
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.io.File
@@ -20,6 +21,8 @@ class LocalItem(private val path: String) : Item {
     constructor(path: Path) : this(path = path.toString())
 
     constructor(file: File) : this(path = file.path)
+
+    fun getTime() = Time(path)
 
     fun getMimeType(): MimeType = mimeType
 

@@ -17,9 +17,6 @@ class MimeType(private val value: String, private val isDirectory: Boolean = fal
         if (value.contains(".") && !isDirectory) {
             return value.substring(value.lastIndexOf("."))
         }
-        if (isDirectory) {
-            return "Dir"
-        }
         return "BIN"
     }
 
