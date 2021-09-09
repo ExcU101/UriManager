@@ -12,10 +12,10 @@ import java.nio.file.Path
 class LocalItem(private val path: String) : Item {
 
     @IgnoredOnParcel
-    private val mimeType = MimeType(path)
+    private val file = File(path)
 
     @IgnoredOnParcel
-    private val file = File(path)
+    private val mimeType = MimeType(path, file.isDirectory)
 
     constructor(path: Path) : this(path = path.toString())
 
@@ -37,6 +37,8 @@ class LocalItem(private val path: String) : Item {
         }
         return path
     }
+
+    fun isFolder(): Boolean = file.isDirectory
 
     override fun compareTo(other: Item): Int {
         return other.getId() - this.getId()
