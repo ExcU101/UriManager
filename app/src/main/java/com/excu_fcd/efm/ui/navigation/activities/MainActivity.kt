@@ -1,7 +1,6 @@
 package com.excu_fcd.efm.ui.navigation.activities
 
 import android.os.Bundle
-import android.os.Environment
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,9 +10,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import com.excu_fcd.core.data.local.LocalItem
+import com.excu_fcd.core.provider.LocalProvider
 import com.excu_fcd.efm.ui.layouts.ItemLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,11 +28,9 @@ class MainActivity : ComponentActivity() {
     fun Main() {
         MaterialTheme {
             LazyColumn() {
-                items(Environment.getExternalStorageDirectory().listFiles()!!.map {
-                    LocalItem(it)
-                }) {
+                items(LocalProvider(this@MainActivity).provideSdcardList()) {
                     ItemLayout(localItem = it) {
-                        Toast.makeText(this@MainActivity, "Clicked", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, "D", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
