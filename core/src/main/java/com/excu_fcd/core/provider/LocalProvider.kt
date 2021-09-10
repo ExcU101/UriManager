@@ -1,9 +1,18 @@
 package com.excu_fcd.core.provider
 
 import android.content.Context
+import com.excu_fcd.core.data.local.LocalItem
+import com.excu_fcd.core.utils.sdcard
+import java.io.File
 
-class LocalProvider(private val context: Context) : Provider,
+open class LocalProvider (private val context: Context) : Provider,
     ISubscribe {
+
+    fun provideSdcardList(): List<LocalItem> {
+        return sdcard.listFiles()!!.map {
+            LocalItem(file = it)
+        }
+    }
 
     private val notificationProvider: NotificationProvider = NotificationProvider(context = context)
 
