@@ -1,32 +1,11 @@
 package com.excu_fcd.core.data
 
-import android.os.Parcelable
-import kotlinx.parcelize.IgnoredOnParcel
-import kotlinx.parcelize.Parcelize
+interface MimeType {
 
-@Parcelize
-class MimeType(private val value: String, private val isDirectory: Boolean = false) : Parcelable {
+    fun getMimeType() = this
 
-    @IgnoredOnParcel
-    private val supportableExtensions = listOf(
-        ".java",
-        ".kt"
-    )
+    fun getExtension(): String
 
-    fun getExtension(): String {
-        if (value.contains(".") && !isDirectory) {
-            return value.substring(value.lastIndexOf("."))
-        }
-        return "BIN"
-    }
-
-    fun canBeSupportableInText(): String {
-        if (canBeSupportable()) {
-            return "Yes"
-        }
-        return "No"
-    }
-
-    fun canBeSupportable(): Boolean = supportableExtensions.contains(getExtension())
+    fun canBeSupportable(): Boolean
 
 }
