@@ -8,4 +8,6 @@ interface JobProvider<F, T> {
 
     suspend fun providerJob(request: Request<F, T>, onResponse: (result: String) -> Unit)
 
+    class Result(val description: String, val isCompleted: Boolean)
+
 }

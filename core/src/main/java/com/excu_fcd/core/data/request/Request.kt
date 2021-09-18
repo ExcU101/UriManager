@@ -1,7 +1,6 @@
 package com.excu_fcd.core.data.request
 
 import com.excu_fcd.core.data.Item
-import com.excu_fcd.core.data.local.LocalFile
 import com.excu_fcd.core.data.request.Request.Operation.Companion.EMPTY_TAG
 import com.excu_fcd.core.dsl.RequestBuilderMarker
 import com.excu_fcd.core.observer.Observer
@@ -22,6 +21,7 @@ abstract class Request<F, T>(
     private var status: Status = Status.WAITING
     private var progress = 0
 
+    //While running, will notify observers
     internal fun notifyObservers() {
         observers.forEach {
             it.onSubscription(item = this)

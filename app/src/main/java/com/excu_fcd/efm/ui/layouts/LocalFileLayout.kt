@@ -25,7 +25,7 @@ private val smallPadding = 8.dp
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
-fun ItemLayout(localItem: LocalFile, click: () -> Unit) {
+fun ItemLayout(localFile: LocalFile, click: () -> Unit) {
     var expanded by remember {
         mutableStateOf(false)
     }
@@ -53,14 +53,14 @@ fun ItemLayout(localItem: LocalFile, click: () -> Unit) {
                     modifier = Modifier.weight(1F)
                 ) {
                     Spacer(modifier = Modifier.width(padding))
-                    Icon(painter = checkIcon(localItem = localItem), contentDescription = "")
+                    Icon(painter = checkIcon(localItem = localFile), contentDescription = "")
                     Spacer(modifier = Modifier.width(padding))
                     Column {
-                        MinInfo(localItem = localItem)
+                        MinInfo(localFile = localFile)
                         SlideTextContent(expanded = expanded) {
-                            if (it) MoreInfo(localItem = localItem) else SmallInfo(
+                            if (it) MoreInfo(localFile = localFile) else SmallInfo(
                                 smallPadding = smallPadding,
-                                localItem = localItem
+                                localFile = localFile
                             )
                         }
                     }

@@ -30,7 +30,6 @@ class CreateJob<T> : JobProvider<LocalFile, T> {
         val isNeedToCreateDirectory = metas.contains("FOLDER")
 
         if (operation.getTag() != getTag() || !getTag().contains(operation.getTag())) {
-            "Not compared ${getName()} \n Request: ${request.getName()}".logIt()
             return
         }
         request.setStatus(Request.Status.RUNNING)
