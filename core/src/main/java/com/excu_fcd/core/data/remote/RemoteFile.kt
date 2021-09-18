@@ -12,4 +12,16 @@ class RemoteFile(private val uri: Uri) : FileItem(uri = uri) {
         return UUID.randomUUID().mostSignificantBits.toInt()
     }
 
+    override fun getExtension(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun canBeSupportable(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun convertedSize(): String {
+        TODO("Not yet implemented")
+    }
+
 }

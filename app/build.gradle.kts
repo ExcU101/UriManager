@@ -48,7 +48,7 @@ android {
 dependencies {
 
     //Kotlin coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-old:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     //Coil
@@ -56,8 +56,6 @@ dependencies {
 
     //Dagger
     implementation("com.google.dagger:dagger:$daggerVersion")
-    implementation(project(mapOf("path" to ":observer")))
-
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
     //Hilt
@@ -65,7 +63,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:$daggerVersion")
 
     //AndroidX
-    implementation("androidx.core-old:core-old-ktx:1.6.0")
+    implementation("androidx.core:core-ktx:1.6.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
 
     //Compose
@@ -77,8 +75,10 @@ dependencies {
     implementation("androidx.compose.material:material:$composeVersion")
 
     implementation("androidx.activity:activity-compose:1.3.1")
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha08")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha09")
 
     //Core
     implementation(project(mapOf("path" to ":core")))
+
+    implementation(project(mapOf("path" to ":observer")))
 }
