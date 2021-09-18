@@ -48,14 +48,15 @@ android {
 dependencies {
 
     //Kotlin coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-old:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     //Coil
-    implementation("io.coil-kt:coil-compose:1.3.0")
+    implementation("io.coil-kt:coil-compose:1.3.2")
 
     //Dagger
     implementation("com.google.dagger:dagger:$daggerVersion")
+    implementation(project(mapOf("path" to ":observer")))
 
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
 
@@ -64,7 +65,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:$daggerVersion")
 
     //AndroidX
-    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.core-old:core-old-ktx:1.6.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
 
     //Compose

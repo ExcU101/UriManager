@@ -6,5 +6,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "EFM"
-include(":app")
-include(":core")
+include(":app", ":core", ":observer")
