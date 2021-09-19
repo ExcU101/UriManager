@@ -21,8 +21,8 @@ class LocalProvider<T> : FileProvider<LocalFile, T>() {
         CopyJob()
     )
 
-    fun provideSdcardList() =
-        Environment.getExternalStorageDirectory().listFiles().map { LocalFile(it.toUri()) }
+    fun provideSdcardList(): MutableList<LocalFile> =
+        Environment.getExternalStorageDirectory().listFiles().map { LocalFile(it.toUri()) } as MutableList<LocalFile>
 
     fun suspendedMakeRequest(request: Request<LocalFile, T>, onResponse: (result: String) -> Unit) {
         CoroutineScope(IO).launch {

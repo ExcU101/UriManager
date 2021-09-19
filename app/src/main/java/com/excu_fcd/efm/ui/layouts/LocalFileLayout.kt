@@ -2,7 +2,6 @@ package com.excu_fcd.efm.ui.layouts
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement.End
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,9 +11,11 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
+import coil.transform.RoundedCornersTransformation
 import com.excu_fcd.core.data.local.LocalFile
 import com.excu_fcd.efm.R
 import com.excu_fcd.efm.ui.SlideTextContent
@@ -23,9 +24,19 @@ import com.excu_fcd.efm.utils.loadPainter
 private val padding = 16.dp
 private val smallPadding = 8.dp
 
-@OptIn(ExperimentalAnimationApi::class)
+
+@OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialApi::class,
+    coil.annotation.ExperimentalCoilApi::class)
 @Composable
 fun ItemLayout(localFile: LocalFile, click: () -> Unit) {
+    val actionList = listOf(
+        MenuItem(icon = rememberImagePainter(data = R.drawable.ic_delete_24),
+            actionName = "Delete"),
+        MenuItem(icon = rememberImagePainter(data = R.drawable.ic_edit_24), actionName = "Rename"),
+        MenuItem(icon = rememberImagePainter(data = R.drawable.ic_copy_24), actionName = "Copy"),
+        MenuItem(icon = rememberImagePainter(data = R.drawable.ic_paste_24), actionName = "Paste"),
+    )
+
     var expanded by remember {
         mutableStateOf(false)
     }
@@ -34,29 +45,26 @@ fun ItemLayout(localFile: LocalFile, click: () -> Unit) {
         mutableStateOf(false)
     }
 
-    Card(
+    Surface(
         modifier = Modifier
             .fillMaxSize()
             .animateContentSize(),
         shape = RoundedCornerShape(0),
+        onClick = click
     ) {
         Column(
             modifier = Modifier
-                .clickable {
-                    click.invoke()
-                }
                 .padding(top = smallPadding, bottom = smallPadding),
         ) {
             Row {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.weight(1F)
+                    modifier = Modifier.weight(2F)
                 ) {
                     Spacer(modifier = Modifier.width(padding))
-                    Icon(painter = checkIcon(localItem = localFile), contentDescription = "")
+                    Icon(painter = checkIcon(localItem = localFile), contentDescription = "", tint = Color.Black)
                     Spacer(modifier = Modifier.width(padding))
                     Column {
-                        MinInfo(localFile = localFile)
                         SlideTextContent(expanded = expanded) {
                             if (it) MoreInfo(localFile = localFile) else SmallInfo(
                                 smallPadding = smallPadding,
@@ -81,45 +89,27 @@ fun ItemLayout(localFile: LocalFile, click: () -> Unit) {
                         expanded = !expanded
                     }
                     IconButton(onClick = {
-                        showMenu = !showMenu
+                        showMenu = true
                     }, modifier = Modifier.fillMaxHeight()) {
-                        Icon(imageVector = Icons.Outlined.MoreVert, contentDescription = "")
+                        Icon(imageVector = Icons.Outlined.MoreVert,
+                            contentDescription = "",
+                            tint = Color.Black)
+                        DropdownMenu(
+                            expanded = showMenu,
+                            onDismissRequest = { showMenu = false },
+                            modifier = Modifier.requiredWidth(240.dp)) {
+                            actionList.forEach {
+                                MenuItemLayout(item = it, smallPadding = smallPadding) {
+                                    showMenu = false
+                                }
+                            }
+
+                        }
                     }
-                    MoreActions(
-                        showMenu = showMenu, actions = listOf(
-                            MenuItem(
-                                "Delete", painterResource(
-                                    id = R.drawable.ic_delete_24
-                                )
-                            )
-                        )
-                    )
                 }
             }
         }
 
-    }
-}
-
-
-@Composable
-private fun MoreActions(
-    actions: List<MenuItem> = listOf(),
-    showMenu: Boolean = false,
-) {
-    var expanded = showMenu
-    DropdownMenu(expanded = expanded, onDismissRequest = {
-        expanded = !expanded
-    }) {
-        actions.forEach {
-            DropdownMenuItem(onClick = {
-                expanded = !expanded
-            }) {
-                Icon(painter = it.icon, contentDescription = it.actionName)
-                Spacer(modifier = Modifier.height(padding))
-                Text(text = it.actionName)
-            }
-        }
     }
 }
 

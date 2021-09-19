@@ -19,7 +19,7 @@ class LocalFile(private val uri: Uri = Environment.getRootDirectory().toUri()) :
         return if (!isDirectory && getName().contains(".")) {
             getName().substring(getName().lastIndexOf("."))
         } else if (isDirectory) {
-            ""
+            "Directory"
         } else {
             getName()
         }

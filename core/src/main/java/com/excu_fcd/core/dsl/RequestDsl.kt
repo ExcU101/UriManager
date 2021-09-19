@@ -48,5 +48,5 @@ inline fun <F : Item, T> builder(block: Request.Builder<F, T>.() -> Unit) =
 inline fun <F : Item, T> singletonRequestBuilder(block: Request.Builder<F, T>.() -> Unit) =
     Request.Builder<F, T>().apply(block).singleton()
 
-inline fun <F : Item, T> requestBuilder(block: Request.Builder<F, T>.() -> Unit) =
+inline fun <F : Item, T> request(block: Request.Builder<F, T>.() -> Unit) =
     Request.Builder<F, T>().apply(block).build()

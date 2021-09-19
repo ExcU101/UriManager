@@ -42,6 +42,9 @@ class DeleteJob<T> : JobProvider<LocalFile, T> {
         if (file.exists()) {
             if (file.deleteRecursively()) {
                 request.updateProgress(1)
+                if (request.getProgress() == request.getItems().size) {
+                    request.setStatus(Request.Status.SUCCESS)
+                }
                 onResponse(success(item = localFile))
             } else {
                 onResponse(failure(item = localFile, reason = "Something gone wrong"))
